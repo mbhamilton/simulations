@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block javascript %} 
+<script type="text/javascript" src="{{STATIC_URL}}js/mutations.js"></script> 
+<script type="text/javascript" src="{{STATIC_URL}}js/simulationFunctions.js"></script>
+
+{% endblock %}
+
+{# page title details #}
+{% block title %}Mutation{% endblock %}
+
+{# plot image tag details, attributes of image tag #}
+{% block simulation %}mutation{% endblock %}
+{% block image_width %}700{% endblock %}
+{% block image_height %}700{% endblock %}
+{% block plot_name %}Mutation Plot{% endblock %}
+
+{# form details, for user input #}
+{# form tag attributes #}
+{% block simulation_name %}mutationsimulation{% endblock %}
+{% block action_url %}mutation{% endblock %}
+
+{# form body #}
+{% block input_panel %}
+  <input type="hidden" id='focusOnPlot' value="{{focusOnPlot}}">
+  <input type="hidden" id='selectedModel' value="{{mutation_model}}">
+  <input type="hidden" id='selectedgenerations' value="{{generations}}">
+  <div id="leftcontrols">
+  <fieldset>
+    <legend>Mutaion Models</legend>
+
+    <div id="irr_div"><label>
+            <input type="radio" name="mutationModel" value="0" id="model_0">
+            Irreversible Mutation
+    </label>
+      <div id="irr_slider_div">
+      <label>Mutation Rate, mu
+      <div class="irr_text_pos">
+    <input id="irr_mu" name="irr_mu" type="text" value="{{irreversible_mutation}}">
+    </div>
+      </label>
+	      
+      <label>Total Generations
+      <div class="irr_text_pos2">
+     <input id="irr_gens" name="irr_gens" type="text" value="{{irreversible_generations}}">
+     </div>
+     </label>
+      </div>
+    </div>
+    
+   
+    <div id="twoway_div">
+      <label>
+            <input type="radio" name="mutationModel" value="1" id="model_1">
+            Two-way Mutation
+    </label>
+      <div id="tw_slider_div">
+      <label>Forward Mutation Rate, mu<div class="tw_text_pos">
+    <input name="twf_mu" id="twf_mu" type="text" value="{{twoway_forward_mutation}}"></div>
+     </label>
+      <label>Reverse Mutation Rate, mu
+      </label>
+      <div class="tw_text_pos2">
+        <input name="twr_mu" id="twr_mu" type="text" value="{{twoway_reverse_mutation}}">
+      </div>
+      </p>
+      
+        <label>Total Generations
+         <div class="tw_text_pos3"><input name="tw_gens" id="tw_total" type="text" value="{{twoway_generations}}"></div></label>
+      
+      </div>
+      
+    </div>
+    <div id="natmut_div">
+      <label>
+            <input type="radio" name="mutationModel" value="2" id="model_2">
+        Neutral Mutation in a Finite Population</label>
+      <div id="nm_slider_div">
+      <label>Effective Population Size (Ne)
+      	<div class="nm_text_pos">
+   		 <input name="nm_ne" id="nm_ne" type="text" value="{{population_size}}">
+    	</div>
+      </label>
+      
+        <label>Generations between Mutations
+
+      <div class="nm_text_pos2">
+    		<input name="nm_gen" id="nm_gen" type="text" value="{{neutral_generations_mutation}}">
+    	</div>
+      </label>
+      <label>Total Generations
+         <div class="nm_text_pos3">
+        	 <input name="nm_total" id="nm_total" type="text" value="{{neutral_generations}}">
+         </div>
+     </label></p>
+      </div>
+    </div>
+    
+    
+</fieldset>
+  <input type="submit" name="run" id="run" value="Run">
+  <input type="submit" name="clear" id="clear" value="Clear">
+</div>
+      {% endblock %}
+      
+      {% block simulation_description %}
+<div id="description>">
+  <h1> Mutations </h1>
+  <p class="lead">This module has three mutation models that are selected by radio buttons. The results of all the models are illustrated by plots of allele frequencies over time. </p>
+  
+ <h2>Irreversible</h2>
+ <p>The irreversible module has only one mutation rate, the rate at which A alleles mutate to a alleles. The user can also set the number of generations to simulate.</p> 
+
+<p>What is the eventual outcome in the irreversible model regardless of the mutation rate? What is the impact of changing the mutation rate?
+</p>
+<hr/>
+<h2> Two-way</h2>
+  <p>The two-way model has two mutation rates, one for the rate at which A alleles mutate to a alleles and another for the rate at which a alleles mutate to A alleles. In the two-way model, the two mutation rates are independent and can take different values. The user can also set the number of generations to simulate.</p>
+
+<p>What is the eventual outcome in the two-way module as long as both mutation rates are not equal to zero?</p>
+
+<p>Both the irreversible and two-way mutation models assume that population size is infinite, meaning that genetic drift is not acting. Even though mutations are random events, these  models are deterministic since an infinite population size leads to allele frequency change each generation being equal to the expect value given the mutation rates. </p>
+
+ <hr />
+<h2>Neutral</h2>
+<p>This model illustrates the eventual fate and segregation times of strictly neutral mutations. These are two key concepts in the neutral theory of molecular evolution. </p>
+
+<p>User-entered parameters are the effective population size (N<sub>e</sub>), the interval between the introduction of new mutations and the number of generations to view.</p>
+
+<p>This simulation introduces new mutations into a finite population and then tracks the frequency of these new mutations over time until they are either lost from the population or fixed in the population. Each new mutation can be considered to occur at a different locus. The pattern to observe is how many mutations are fixed and how many are lost, and how long mutations take to reach their eventual fate of fixation or loss. All of the new mutations are initially present as one copy or have an initial frequency of <sup>1</sup>&frasl;<sub>2N<sub>e</sub></sub>. </p>
+
+<p>What is the probability that a new mutation goes to fixation? How many new neutral mutations do you expect to observe going to loss in order to observe one mutation that reaches fixation? </p>
+    
+<p>For more background, see <em>chapters 5</em> and <em>8</em> in Hamilton, 2009.</p>
+  </div>{% endblock %}

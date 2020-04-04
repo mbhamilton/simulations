@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block  simulation_description %}
+<div id="leftcontrols">
+<img src="{{STATIC_URL}}Population_Geneticsbook.jpg" alt="booklogo" name="popgens" id="popgens" />
+</div>
+
+<p class="lead">These web pages include interactive simulations designed to illustrate aspects of evolutionary genetics - genetic drift, gene flow, mutation, natural selection, and systems of mating.</p>
+
+<p>These simulations accompany the text:<br/>
+<strong>Hamilton MB. 2009. <em>Population Genetics.</em> Wiley-Blackwell, Hoboken, NJ. </strong></p>
+
+<p>
+The simulations were written by Matthew B. Hamilton and Marie Kolawole, with support from Steve Moore and Marie Selvanadin. 
+</p>
+<p>
+Marie Kolawole, Systems Programmer for the <strong>UIS</strong> <a href="http://uis.georgetown.edu/research">Research Technologies</a> division, has supported GUMC and Main Campus research projects as a software developer for the past 8 years. She's worked on major projects with the Lombardi Comprehensive Cancer Center, the GUMC Dean for Research, Dr. Mary Ann Dutton in the Dept. of Psychiatry, and currently for Dr. Matthew Hamilton, Dept. of Biology.</p>
+<p>
+Marie received an MS in Applied Computer Science with a concentration in Software Development from Columbus State University.<br/> Marie also holds an MSc. in Advance Methods in Computer Science and First Class B.Sc. Honours in Computer Science & Mathematics from Queen Mary University of London.</p>
+
+<p>
+The creation of these web pages was supported by a Georgetown University
+<a href="https://itel.georgetown.edu">Initiative on Technology-Enhanced Learning</a> (<strong>ITEL</strong>) grant to Matthew B. Hamilton. </p>
+
+<p>These simulations are also available as Matlab applications</p>
+
+{% block plot %}{% endblock %}
+{% block form %}{% endblock %}
+
+{% endblock %}

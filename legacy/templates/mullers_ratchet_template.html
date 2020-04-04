@@ -1,0 +1,107 @@
+{% extends "base_topcontrols.html" %}
+
+{% block javascript %} 
+<script type="text/javascript" src="{{STATIC_URL}}js/simulations.js"></script> 
+<script type="text/javascript" src="{{STATIC_URL}}js/simulationFunctions.js"></script>
+
+{% endblock %}
+
+{# page title details #}
+{% block title %}Mullers Ratchet{% endblock %}
+
+{# plot image tag details, attributes of image tag #}
+{% block simulation %}mullers{% endblock %}
+{% block image_width %}1000{% endblock %}
+{% block image_height %}800{% endblock %}
+{% block plot_name %}Mullers Ratchet Plot{% endblock %}
+
+{# form details, for user input #}
+{# form tag attributes #}
+{% block simulation_name %}mullerssimulation{% endblock %}
+{% block action_url %}mullers{% endblock %}
+
+{# form body #}
+{% block input_panel %}
+<input type="hidden" id='focusOnPlot' value="{{focusOnPlot}}">
+
+<div id="topcontrols"> 
+          <h3>Parameters</h3>
+
+      <fieldset id="firstcontrol" >
+      <table >
+       <tr >
+       <td><label>Population size of haploid chromosmes (N):</label></td>
+       <td>
+       	<input type="text" name="populationSize" id="populationSize" value="{{populationSize}}" size="10">
+       </td>
+        </tr>
+        <tr>
+        <td><label>Generations to simulate:</label></td>
+        <td  >
+       <input type="text" name="generations" id="generations" size="10" value="{{generations}}">
+        </td>
+        </tr>
+        <tr>
+        <td><label>Selection coefficient(s):<br/>(Selection is for viability where fitness is 1-s for each locus.)</label></td>
+        <td>
+        	<input type="text" name="selection" id="selection"size="10" value="{{selection}}">
+        </td>
+        </tr>
+      
+    
+  
+        </table>
+        </fieldset>
+
+        <fieldset id="secondcontrol">
+          <table>
+   <tr>
+       <td><label>Mutation rate (mu):</label></td>
+       <td>
+        <input type="text" name="mutation" id="mutation" size="10" value="{{mutation}}">
+       </td>
+        </tr>
+
+        <tr>
+        <td><label>Number of loci:</lable></td>
+        <td><input type="text" name="loci" id="loci" size="10" value="{{loci}}"></td>
+        </tr>
+        <tr>
+            <td><label>Mean family size:</label></td>
+            <td><input type="text" name="mean" id="mean" size="10" value="{{mean}}"></td>
+        </tr>
+      </table>
+      </fieldset>
+        
+        <table>
+          <fieldset id="thirdcontrol">
+       <tr>
+       <td><label>Max family size:</label></td>
+       <td><input type="text" name="max" id="max" value="{{max}}" size="10">
+       </td>
+        </tr>
+        </table>
+      </fieldset>
+    </div>
+      
+          <input id="run" type="submit" value="Ok"> &nbsp; <input name="clear" type="submit" value="Clear Canvas">
+
+          <div class="clear"></div>
+
+      {% endblock %}
+      
+      {% block simulation_description %}
+      <div id="description">
+      <h1> Mullers Ratchet </h1>
+        
+      <p class="lead">Mutation, genetic drift and natural selection acting at the same time can result in the progressive increase in the number of mutations in a population of a species that is haploid and does not experience recombination. This phenomenon is called Muller’s ratchet.</p> 
+
+<p>The name is an analogy to a mechanical device (like a wrench or a winch) that permits rotation in only one direction.  Muller’s ratchet results in the accumulation of more and more mutations in a population, with no mechanism to regenerate individuals with fewer mutations. This leads to ever declining average fitness in populations if most mutations are deleterious. Muller’s ratchet is a model that demonstrates a selective advantage of recombination under some conditions.</p> 
+
+<p>User-entered parameters are the effective population size (N<sub>e</sub>) in terms of the number of haploid individuals or chromosomes, the number of loci on each haploid chromosome, the selection coefficient against mutations, the per locus mutation rate and the number of generations to simulate.</p>
+
+<p>At generation zero, all individuals have zero mutations (top left histogram). As mutation introduces mutations, the distribution of the number of loci bearing mutations per individual spreads to the right. Natural selection tends to keep the number of mutations in check since mutations are deleterious and decrease fitness. However, there is no recombination so it is not possible for an individual to have progeny with fewer mutations than its parent. Continued mutation pressure reduces the number of individuals with the fewest mutations. Eventually, genetic drift can result in total loss of mutation categories with few individuals. When drift results in the loss of all genotypes with the fewest mutations (the left-most bar in a histogram), the ratchet clicks up one notch since the number of mutations cannot decrease to that level ever again.</p> 
+
+<p>For more background, see <em>chapter 5</em> Hamilton, 2009.</p>
+</div>
+{% endblock %}

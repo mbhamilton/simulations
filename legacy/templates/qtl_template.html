@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block javascript %} 
+<script type="text/javascript" src="{{STATIC_URL}}js/simulationFunctions.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/qtl.js"></script> 
+{% endblock %}
+
+{# page title details #}
+{% block title %}QTL{% endblock %}
+
+{# plot image tag details, attributes of image tag #}
+{% block simulation %}qtl{% endblock %}
+{% block image_width %}700{% endblock %}
+{% block image_height %}1100{% endblock %}
+{% block plot_name %}QTL Plot{% endblock %}
+
+{# form details, for user input #}
+{# form tag attributs #}
+{% block simulation_name %}qtlsimulation{% endblock %}
+{% block action_url %}qtl{% endblock %}
+
+{# form body #}
+{% block input_panel %}
+<input type="hidden" id='focusOnPlot' value="{{focusOnPlot}}">
+<div id="qtl">
+
+<input type="hidden" id='qtl_architecture' value="{{qtl_arch}}">
+  <input type="hidden" id='num_qtl' value="{{qtl}}">
+ <div id="leftcontrols" >
+  <h3>Parameters</h3>
+
+  <fieldset >
+    <table >
+      
+<tr>
+<td ><label>
+Effective population size (N<sub>e</sub>) of each population:</label></td>
+<td  >
+<input type="text" value="{{ne}}" name="ne" maxlength="5"></td>
+</tr>
+<tr>
+	<td ><label>Mutation rate at each locus:</label></td>
+    <td class="input"><label for="mr">0</label>
+<input type="range" min="0" max="1000" name="mr" id="mr">
+<label for="mr">1</label><br/>
+<label id="mr_value" class="midvalue">{{mutation_rate}}</label></td>
+    </tr>
+<tr>
+<td><label>Initial allele frequency (all loci):</label></td>
+<td ><label for="mr">0</label>
+<input type="range" min="0" max="10" name="iaf" id="iaf">
+<label for="iaf">1</label><br/>
+<label id="iaf_value" class="midvalue">{{initial_allele}}</label></td></tr>
+    <tr>
+    	<td><label>Proportion of phenotypic variation caused by environment variation (VE):</label></td>
+        <td  > <label for="ve">0</label>
+        <input name="ve" id="ve" type="range" min="0" max="10" step="1" ><label for="ve">1</label><br/>
+        <label id='ve_value' class="midvalue">{{variation_environment}}</label></td></tr>
+    <tr>
+      <td><label>Maximum genotype value:</label></td>
+      <td  > <label for="max_geno">1</label>
+        <input name="max_geno" id="max_geno" type="range"  value="{{max_genotype}}" min="1" max="100" step="1" ><label for="max_geno">100</label><br/>
+        <label id='max_geno_value' class="midvalue">{{max_genotype}}</label></td>
+    </tr>
+    <tr>
+      <td style="padding-bottom: 15px;"><label>Proportion of the phenotypic distibution that does not reproduce (selnx threshold):<br/>
+        <span class="smallfont">(Selection is always directional for larger values.)</span></label></td>
+      <td  > <label for="selxn_thresh">0</label>
+        <input name="selxn_thresh" id="selxn_thresh" type="range" min="0" max="10" step="1" ><label for="ve">1</label><br/>
+        <label id='selxn_thresh_value' class="midvalue">{{selxn_thresh}}</label></td>
+    </tr>
+        </table>
+  </fieldset></div>
+ 
+   <div class="controlDiv2">  
+      <fieldset >
+        <legend>Number of Quantitative Trait Loci (QTL)</legend>
+        <table >
+       <tr >
+       <td >
+       	<label><input type="radio" name="qtl" id="qtl_10" value="10">10</label> 
+       </td>
+        </tr>
+        <tr >
+        <td >
+       	<label><input type="radio" name="qtl" id="qtl_50" value="50">50</label> 
+       </td>
+        </tr>
+        <tr >
+        <td >
+       	<label><input type="radio" name="qtl" id="qtl_200" value="200">200</label> 
+       </td>
+        </tr>
+        </table>
+      </fieldset>
+     </div>
+     <div class="controlDiv3">
+      <fieldset  ><legend>QTL Architecture</legend>
+      <table >
+        <tr>
+	        <td colspan="3">
+	       	<label><input type="radio" name="qtl_arch" id="qtl_arch_1" value="1">All QTL have equal effects</label> 
+	       </td>
+        </tr>
+        <tr>
+	        <td colspan="3">
+	       	<label><input type="radio" name="qtl_arch" id="qtl_arch_2" value="2">There are major effect QTL</label> 
+	       </td>
+	        </tr>
+        <tr id="major_qtl_row_1">
+	        <td>&nbsp;</td>
+	        <td  >
+	        Number of major QTL: <br/><span class="smallfont">(all equal effect)</span>
+	        </td>
+	        <td  >
+	       	<input type="text" name="num_major_qtl" id="num_major_qtl" value="{{number_of_major_qtl}}"> 
+	       </td>
+        </tr>
+        <tr id="major_qtl_row_2">
+	        <td >&nbsp;</td>
+	        <td>
+	        	Genotype variable of <strong>each</strong> major QTL:
+	        </td>
+	        <td >
+	       	<input type="text" name="geno_var" id="geno_var" value="{{genotypic_variation}}"> 
+	       </td>
+        </tr>
+        <tr>
+        <td colspan="3" >
+       	<label><input type="radio" name="qtl_arch" id="qtl_arch_3" value="3">QTL effects are gamma distributed</label> 
+       </td>
+        </tr>
+        
+        </table>
+      </fieldset>
+      </div>
+       <div class="controlDiv4" >
+       
+       <fieldset >
+    <table >
+      
+<tr>
+<td ><label>
+Generations to simulate:</label></td>
+<td  >
+<input type="text" value="{{generations}}" name="generations" maxlength="5"></td>
+</tr>
+<tr>
+	<td ><label>Number of loci in allele frequency plot:</label></td>
+    <td class="input"><label for="nlafp">5</label>
+<input type="range" min="5" max="{{qtl}}" value="{{nplotloci}}" name="nlafp" id="nlafp" >
+<label for="nlafp" id="nlafp_max">{{qtl}}</label><br/>
+<label id="nlafp_value" class="midvalue">{{nplotloci}}</label></td>
+    </tr>
+    <tr >
+    <td colspan="2" >
+    <input name="run" type="submit" value="Run"> &nbsp; <input name="clear" type="submit" value="Clear Canvas">
+    </td>
+    </tr>
+    </table>
+       </fieldset>
+      </div>
+
+</div> <!-- /#qtl  -->
+{% endblock %}
+      
+      {% block simulation_description %}
+      <div id="description">
+      <h1> Qtl </h1>
+      <p class="lead">This module illustrates the evolution of a quantitative trait depending on the specific nature of the genetic architecture of the trait. Users can alter parameters that make up the genetic architecture - numbers of loci, initial allele frequencies, mutation rates - and then track allele frequencies at the individual quantitative trait loci (QTL). Users can also see the consequences of genetic architecture in terms of phenotypic mean and variance along with the heritability.</p>
+           
+<p>User entered parameters are the genetic effective population size (N<sub>e</sub>), the number of loci or QTL that influence the trait, the mutation rate for all QTL (m), the number of generations to simulate, the strength of directional natural selection, the amount of environmental variation in trait values, the initial allele frequency at all QTL and the maximum genotypic value of an individual.</p>
+
+<p>There are two general types of genetic architecture tat can be modeled and these are set using the radio buttons on the top right. One possibility is all QTL having equal effects on the genotypic variance in the trait. The other possibility is that some QTL have large effects on the genotypic variance in the trait. If the latter option is chosen, the number of “large” effect QTL can be specified and the effect of each of these loci (as a percentage of the total genotypic variation) can be specified. For example, clicking on the bottom radio button and setting Number of large effect loci equal to 2 and the VG explained by each large QTL to 0.2 would simulate a situation where two QTL explain 40% of genotypic variance while the remaining nQTL-2 loci (their number is set in the Number of QTL field) would explain equal amounts of the remaining 60% of genotypic variance in the trait. </p>
+
+                <p>Natural selection is modeled as truncation selection. The parameter given in “Nat. selxn. truncation point” specifies the proportion of individuals in the upper end of the distribution of phenotypic values that breed to form the next generation. A value of 1.0 means that all individuals can breed and there is no natural selection. A value of 0.8, for example, means that the 80% of the population with the largest phenotypic values breeds while those with the lowest 20% of phenotypic values do not breed. Parameters less than one but greater than zero produce directional natural selection for larger phenotypic values. Natural selection is stronger as the parameter value entered approaches zero.</p>
+                
+<p>For more background, see <em>chapter 9</em> in Hamilton, 2009.
+</p>
+
+</div>
+            {% endblock %}

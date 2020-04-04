@@ -1,0 +1,144 @@
+{% extends "base_topcontrols.html" %}
+
+{% block javascript %} 
+<script type="text/javascript" src="{{STATIC_URL}}js/simulationFunctions.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/driftselection.js"></script> 
+{% endblock %}
+
+{# page title details #}
+{% block title %}Drift Selection{% endblock %}
+
+{# plot image tag details, attributes of image tag #}
+{% block simulation %}driftselection{% endblock %}
+{% block image_width %}1000{% endblock %}
+{% block image_height %}800{% endblock %}
+{% block plot_name %}Drift Selection Plot{% endblock %}
+
+{# form details, for user input #}
+{# form tag attributs #}
+{% block simulation_name %}driftselectionsimulation{% endblock %}
+{% block action_url %}driftselection{% endblock %}
+
+{# form body #}
+{% block input_panel %}
+<input type="hidden" id='focusOnPlot' value="{{focusOnPlot}}">
+<div id="topcontrols" >
+
+ 
+  <fieldset id="firstcontrol">
+    <legend>Genetic drift</legend>
+    <table >
+       <tr> 
+        <td class="entity"><label>Total number of replicate populations:</label></td>
+		<td class="input"><input name="replicate_populations" type="text" value="{{replicate_population}}" size="5" maxlength="5">
+        </td>
+       </tr>
+<tr>
+<td class="entity"><label>
+Effective population size (N<sub>e</sub>) of each population:</label></td>
+<td >
+<input type="text" value="{{ne}}" name="ne" maxlength="5" size="5"></td>
+</tr>
+<tr>
+	<td class="entity"><label>Number of generations:</label></td>
+    <td ><input name="number_of_generations" type="text"  value="{{number_of_generations}}" size="5" maxlength="5"  ></td>
+    </tr>
+<tr>
+<td class="entity"><label>Initial allele frequency (f<sub>A</sub>):</label></td>
+<td  >  
+ <label for="initial_allele_frequency">0</label>
+<input name="initial_allele_frequency" id="initial_allele_frequency" type="range" min="0" max="10" step="1" >
+<label for="initial_allele_frequency">1</label><br/>
+        <label id='fa_value' class="midvalue">{{fa}}</label>
+        </td></tr>
+    <tr>
+    	<td class="entity"><label>Number of replicate populations in allele frequency plot:</label></td>
+        <td  > <label for="replicate_populations_in _allele">1</label>
+        <input name="replicate_populations_in_allele" id="replicate_populations_in_allele" type="range"  min="1" max="20" step="1" ><label for="replicate_populations_in _allele">20</label><br/>
+        <label id='rpia_value' class="midvalue">{{rpia}}</label></td></tr>
+        </table></fieldset> 
+      <fieldset id="secondcontrol">
+        <legend>Natural selection</legend>
+        <table >
+        <tr> <td colspan="2">
+        <input id="natural_selection" name="natural_selection" type="checkbox" {{natural_selection}}>Natural Selection</input></td>
+       </tr>
+       <tr  ><td  colspan="2">
+       <label  >Relative fitness values</label></td></tr>
+       <tr  >
+       <td >wAA:</td>
+       <td >
+       	<label for="wAA">0</label>
+       	<input type="range" name="wAA" id="wAA" max="200" min="0" step="1">
+        <label for="wAA">20</label><br/>
+        <label id='wAA_value' class="midvalue">{{wAA}}</label>
+       </td>
+        </tr>
+        <tr  >
+        <td>wAa:</td><td><label for="wAa">0</label>
+       <input type="range" name="wAa" id="wAa" max="200" min="0" step="1" ><label for="wAa">20</label><br/>
+        <label id='wAa_value' class="midvalue">{{wAa}}</label>
+        </td>
+        </tr>
+        <tr  >
+        <td >waa:</td>
+        <td >
+        	<label for="waa">0</label>
+       		<input type="range" name="waa" id="waa" max="200" min="0" step="1" >
+           	<label for="waa">20</label><br/>
+        	<label id='waa_value' class="midvalue">{{waa}}</label>
+        </td>
+        </tr>
+        </table>
+      </fieldset>
+
+      <fieldset  ><legend>Mutation</legend>
+      <table >
+        <tr> <td colspan="2">
+        <input id="mutation" name="mutation" type="checkbox" {{mutation}}>Mutation</input></td>
+       </tr>
+       <tr><td  colspan="2">
+       <label>Mutation Rates</label></td></tr>
+       <tr><td>mu (A&rarr;a):</td><td ><label for="mu">0</label>
+       <input type="range" name="mu" id="mu" max="100" min="0" step="1"><label for="mu">0.1</label><br/>
+        <label id='mu_value' class="midvalue">{{mu}}</label>
+       </td>
+        </tr>
+        <tr>
+        <td>nu (a&rarr;A):</td><td ><label for="nu">0</label>
+       <input type="range" name="nu" id="nu" max="100" min="0" step="1"><label for="wAa">0.1</label><br/>
+        <label id='nu_value' class="midvalue">{{nu}}</label>
+        </td>
+        </tr>
+        </table>
+      </fieldset>
+       <div class="controlDiv4" >
+       <input name="run" type="submit" value="Run"> &nbsp; <input name="clear" type="submit" value="Clear Canvas">
+    </div>
+
+  </div> <!-- /#driftselection -->
+          <div class="clear"></div>
+
+      {% endblock %}
+      
+      {% block simulation_description %}
+      <div id="description">
+      <h1> Drift Selection Mutation</h1>
+      <p class="lead">This module simulates the action of genetic drift alone, or the joint action of drift and natural selection and/or mutation, acting on the allele frequencies of a large sample of independent populations. The simulation assumes genetic loci with two alleles and a two-way mutation model (or a k alleles mutation model with k=2). Genetic drift is always operating as the populations are assumed to be finite. The genetic effective population size can be set using a text entry box.</p>
+                
+ <p>There are two graphs that display the results. The larger graph shows allele frequencies over time in a sample of a few of the replicate populations. (The number of populations sample can be set using the slider labeled "Number of replicate populations in allele frequency plot".) This allows the user to see the allele frequency trajectories of individual populations over time.</p>
+
+<p>The smaller plot to the right gives a histogram of allele frequency for the entire set of replicate populations. This is the ensemble distribution that reveals the probability distribution of allele frequencies among a large number of independent replicate populations. The ensemble distribution helps us understand what proportion of replicate populations have high heterozygosity (intermediate allele frequencies) or low heterozygosity (allele frequencies at or near fixation/loss).</p> 
+
+<p>The ensemble distribution is similar is a discrete-time version of what is predicted by the continuous-time diffusion model.</p> 
+
+<p>The processes of natural selection and mutation can each be turned on and off with check boxes. For natural selection, the relative fitness values of the three genotypes can be set with sliders. For mutation, the forward and reverse mutation rates can be set independently with sliders. </p>
+
+<p>The total number of replicate populations can be set using a text entry box, as can the number of generations to simulate.</p>
+
+<p>When drift, natural selection, and mutation are all operating the simulation produces ensemble distributions similar to the graphs that appear in Sewall Wright's influential 1923 paper "The roles of mutation, inbreeding, crossbreeding, and selection in evolution." See <em>Figure 11.3</em> in Hamilton (2009).</p>
+
+<p>For more background, see <em>chapters 3, 5, 6</em> and <em>7</em> in Hamilton, 2009.</p>
+
+</div>
+{% endblock %}

@@ -1,0 +1,110 @@
+#appDiv1 {
+	position:absolute;
+	left:14.5px;
+	top:313px;
+	width:1267px;
+	height:846px;
+	z-index:1;
+}
+#appDiv2 {
+	position:absolute;
+	left:55px;
+	right:55px;
+	top:16px;
+	width:1324px;
+	height:1626px;
+	z-index:2;
+}
+#appDiv4 {
+	position:absolute;
+	left:15px;
+	top:24px;
+	width:1265px;
+	height:285px;
+	z-index:4;
+}
+
+#appDiv3 {
+	alignment-adjust:central;
+	position:absolute;
+	left: 68px;
+	top:1167px;
+	width:1171px;
+	height:317px;
+	z-index:3;
+}
+#imgdiv {
+	alignment-adjust:left;
+	position:absolute;
+	left: 140:px;
+	top:7px;
+	width:120px;
+	height:299px;
+	z-index:5;
+	left: 3px;
+	bottom: 3px;
+}	
+#desdiv {
+	alignment-adjust:left;
+	position:absolute;
+	left: 219px;
+	top:9px;
+	width:949px;
+	height:296px;
+	z-index:6;
+}	
+
+#header {
+	position:absolute;
+	top:15px;
+	z-index:7;
+	width: 1391px;
+}
+#footer {
+	position:absolute;
+	left:14px;
+	top:1528px;
+	width:1392px;
+	height:83px;
+	z-index:8;
+}
+
+.style11 {font-weight: bold}
+.style12 {font-size: 18px}
+#apDiv2 div h2 {
+	color: #003E7E;
+	position: absolute;
+	top: 6px;
+	left: 175px;
+	width: 1107px;
+	height: 42px;
+	alignment-adjust:central
+}
+.controlDiv1 {
+	position: absolute;
+	height: 225px;
+	width: 545px;
+	left: 36px;
+	top: 5px;
+}
+.controlDiv2 {
+	position: absolute;
+	height: 224px;
+	width: 270px;
+	left: 612px;
+	top: 5px;
+}
+.controlDiv3 {
+	position: absolute;
+	height: 224px;
+	width: 303px;
+	left: 922px;
+	top: 5px;
+}
+.controlDiv4 {
+	position: absolute;
+	height: 25px;
+	width: 215px;
+	top: 247px;
+	left: 540px;
+}

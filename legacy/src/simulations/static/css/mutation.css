@@ -1,0 +1,174 @@
+@charset "UTF-8";
+/* CSS Document */
+#appDiv1 {
+	position:absolute;
+	left:426px;
+	top:20px;
+	width:584px;
+	height:455px;
+	z-index:1;
+}
+#appDiv2 {
+	position:absolute;
+	left:55px;
+	right:55px;
+	top:12px;
+	width:1556px;
+	height:1450px;
+	z-index:2;
+}
+#appDiv3 {
+	alignment-adjust:central;
+	position:absolute;
+	left: 297px;
+	top:734px;
+	width:1049px;
+	height:366px;
+	z-index:3;
+}
+#imgdiv {
+	alignment-adjust:left;
+	position:absolute;
+	left: 140:px;
+	top:8px;
+	width:120px;
+	height:301px;
+	z-index:5;
+	left: 7px;
+}	
+#desdiv {
+	alignment-adjust:left;
+	position:absolute;
+	left: 218px;
+	top:7px;
+	width:821px;
+	height:578px;
+	z-index:6;
+}	
+#footer {
+	position:absolute;
+	left:10px;
+	top:1350px;
+	width:1537px;
+	height:100px;
+	alignment-adjust: central;
+	z-index:4;
+}
+.sliderlabel {
+	position: relative;
+	width: 200px;
+	left: 65px;
+}
+.style11 {font-weight: bold}
+.style12 {font-size: 18px}
+#mutation_model_div {
+}
+#mutation_model_div {
+	position: absolute;
+	visibility: visible;
+	z-index: auto;
+	height: 550px;
+	width: 402px;
+	left: 10px;
+	top: 127px;
+}
+#irr_div {
+	position: absolute;
+	left: 14px;
+	top: 37px;
+	width: 370px;
+	height: 114px;
+}
+#twoway_div {
+	position: absolute;
+	left: 14px;
+	top: 165px;
+	width: 370px;
+	height: 152px;
+}
+#natmut_div {
+	position: absolute;
+	left: 14px;
+	top: 331px;
+	width: 382px;
+	height: 150px;
+}
+#irr_slider_div {
+	position: absolute;
+	left: 27px;
+	top: 29px;
+	height: 79px;
+	width: 340px;
+}
+#tw_slider_div {
+	position: absolute;
+	left: 27px;
+	top: 29px;
+	height: 104px;
+	width: 340px;
+	font-size: 14px;
+}
+#nm_slider_div {
+	position: absolute;
+	left: 27px;
+	top: 29px;
+	height: 104px;
+	width: 352px;
+	font-size: 14px;
+}
+#apDiv2 form #mutation_model_div fieldset #irr_div #irr_slider_div label {
+	font-size: 14px;
+}
+#apDiv2 div h2 {
+	color: #003E7E;
+	position: absolute;
+	top: 6px;
+	left: 175px;
+	width: 1107px;
+	height: 42px;
+	alignment-adjust:central
+}
+
+.irr_text_pos {
+	left: 163px;
+	top: 4px;
+	position: absolute;
+}
+.irr_text_pos2 {
+	left: 164px;
+	top: 35px;
+	position: absolute;
+}
+
+
+.tw_text_pos {
+	left: 163px;
+	top: 4px;
+	position: absolute;
+}
+.tw_text_pos2 {
+	left: 164px;
+	top: 35px;
+	position: absolute;
+}
+.tw_text_pos3 {
+	left: 164px;
+	top: 66px;
+	position: absolute;
+}
+
+.nm_text_pos {
+	left: 180px;
+	top: 4px;
+	position: absolute;
+}
+.nm_text_pos2 {
+	left: 180px;
+	top: 33px;
+	position: absolute;
+}
+.nm_text_pos3 {
+	left: 180px;
+	top: 66px;
+	position: absolute;
+}

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block javascript %} 
+<script type="text/javascript" src="{{STATIC_URL}}js/finiteh.js"></script> 
+<script type="text/javascript" src="{{STATIC_URL}}js/simulationFunctions.js"></script>
+
+{% endblock %}
+
+{# page title details #}
+{% block title %}Drift Decline Mutation{% endblock %}
+
+{# plot image tag details, attributes of image tag #}
+{% block simulation %}finiteh{% endblock %}
+{% block image_width %}800{% endblock %}
+{% block image_height %}600{% endblock %}
+{% block plot_name %}Finite H Plot{% endblock %}
+
+{# form details, for user input #}
+{# form tag attributes #}
+{% block simulation_name %}finitehsimulation{% endblock %}
+{% block action_url %}finiteh{% endblock %}
+
+{# form body #}
+{% block input_panel %}
+  <input type="hidden" id='focusOnPlot' value="{{focusOnPlot}}">
+  <input type="hidden" id='replicate_population_value' value="{{replicatePopulations}}">
+  <input type="hidden" id='allele_frequency' value="{{alleleFrequency}}">
+ 
+  <div id="controls_div">
+      
+           <div id="leftcontrols">
+            <h3>Parameters</h3>
+            <p>Press Run to generate a graph of heterozygosity (H) over time in generations.</p>
+              <label>Effective Population Size (Ne)
+              	<div class="text_pos">
+                	<input name="populationSize" id="populationSize" type="text" value="{{populationSize}}">
+                </div>
+        	  </label>
+              
+              
+              <label>Number of Generations
+                 <div class="text_pos3">
+                     <input name="numberOfGenerations" id="numberOfGenerations" type="text" value="{{numberOfGenerations}}" >
+                 </div>
+              </label>
+              <label>Initial Allele Frequency p(A)
+        		<div class="text_pos2" align="center">
+                    <label for="alleleFrequency">0</label>
+                    	<input name="alleleFrequency" id="alleleFrequency" type="range" step="1"  min="0" max="10"value="{{alleleFrequency}}"><label for="alleleFrequency">1</label><br/>
+                     <label id='alleleFrequencyValue'></label>
+                </div>
+              </label>
+
+              <label>Number of Replicate Populations to plot
+                 <div class="text_pos4" align="center">
+               		<label for="replicatePopulations">0</label><input name="replicatePopulations" id="replicatePopulations" type="range" value="{{replicatePopulations}}" min="0" max="20" step="1">
+                    <label for="replicatePopulations">20</label><br/>
+                    <label id='replicatePopulationsValue'></label>
+          		 </div>
+              </label>  
+           </div>
+      
+      <input type="submit" name="run" id="runbutton" value="Run">
+      <input type="submit" name="clear" id="runbutton" value="Clear">
+      <br/>
+  </div>
+      {% endblock %}
+      
+      {% block simulation_description %}
+      <div id="description">
+        <h1> Heterozygosity at Diallelic locus in a Finte Population</h1>
+       
+       <p class="lead">This simulation demonstrates how genetic drift in finite populations decreases heterozygosity over time. In this sense, genetic drift and consanguineous mating have the same impact on heterozygosity.</p>
+
+<p>User-entered parameters are the &ldquo;Effective population size(N<sub>e</sub>)&rdquo;, the &ldquo;Initial allele frequency p(A)&rdquo;, the &ldquo;Number of generations&rdquo; to simulate, and the &quot;Number of replicate populations to plot.&quot; </p>
+
+<p>Press <em>Run</em> to generate a graph of heterozygosity <strong>(H)</strong> over time in generations. </p>
+
+<p>In a finite population, expected heterozygosity decreases according to <strong>H<sub>t</sub> = H<sub>0</sub>(1-<sup>1</sup>&frasl;<sub>2N<sub>e</sub></sub>)<sup>t</sup></strong> where <strong>H<sub>t</sub></strong> is heterozygosity at time <strong>t</strong>, <strong>H<sub>0</sub></strong> is the initial heterozygosity at time zero, <strong>t</strong> is the number of generations and <strong>Ne</strong> is the effective population size. The generation-by-generation values computed from this equation are shown as a black line on the graph. </p>
+
+<p>There are additional lines on the graph (the number of lines is equal to the value in the text entry box &ldquo;Number of replicate populations to plot&rdquo;). These lines each show the heterozygosity over time in a single finite population that has an effective population size equal to the value in the text entry field. Notice that the heterozygosity frequencies in the individual populations varies over time and is often greater or less than the expected heterozygosity. This reinforces that the equation for expected heterozygosity applies to the average of a very large number of replicate populations (it is an ensemble distribution). Individual populations do experience a reduction in heterozygosity over time caused by genetic drift, but the decline in heterozygosity is a random walk. </p>
+
+<p>For more background, see <i>chapter 3</i> in Hamilton, 2009.</p>
+</div>
+ {% endblock %}

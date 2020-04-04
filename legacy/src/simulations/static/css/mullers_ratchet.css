@@ -1,0 +1,116 @@
+@charset "UTF-8";
+/* CSS Document */
+#appDiv1 {
+	position:absolute;
+	left:304px;
+	top:10px;
+	width:1107px;
+	height:455px;
+	z-index:1;
+}
+#appDiv2 {
+	position:absolute;
+	left:55px;
+	right:55px;
+	top:12px;
+	width:1540px;
+	height:1277px;
+	z-index:2;
+}
+#appDiv4 {
+	position:absolute;
+	left:10px;
+	top:94px;
+	width:268px;
+	height:495px;
+	z-index:4;
+}
+
+#appDiv3 {
+	position:absolute;
+	left: 243px;
+	top:820px;
+	width:1171px;
+	height:317px;
+	z-index:3;
+}
+#imgdiv {
+	position:absolute;
+	left: 140px;
+	top:17px;
+	width:120px;
+	height:299px;
+	z-index:5;
+	left: 0px;
+}	
+#desdiv {
+	position:absolute;
+	left: 219px;
+	top:9px;
+	width:949px;
+	height:296px;
+	z-index:6;
+}	
+
+#header {
+	position:absolute;
+	top:15px;
+	z-index:7;
+	width: 1391px;
+}
+#footer {
+	position:absolute;
+	left:38px;
+	top:1180px;
+	width:1392px;
+	height:74px;
+	z-index:8;
+}
+.sliderlabel {
+	position: relative;
+	width: 200px;
+	left: 50px;
+	right: 50px;
+}
+.style11 {font-weight: bold}
+.style12 {font-size: 18px}
+#apDiv2 div h2 {
+	color: #003E7E;
+	position: absolute;
+	top: 6px;
+	left: 175px;
+	width: 1107px;
+	height: 42px;
+}
+
+.controlDiv1 {
+	position: absolute;
+	height: 150px;
+	width: 250px;
+	left: 5px;
+	top: 14px;
+}
+.controlDiv2 {
+	position: absolute;
+	height: 150px;
+	width: 250px;
+	left: 5px;
+	top: 210px;
+}
+.controlDiv3 {
+	position: absolute;
+	height: 20px;
+	width: 250px;
+	left: 5px;
+	top: 395px;
+}
+.controlDiv4 {
+	position: absolute;
+	height: 25px;
+	width: 250px;
+	top: 462px;
+	left: 7px;
+}
+.smallfont {
+font-size:smaller;
+color: #903}

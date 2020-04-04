@@ -1,0 +1,91 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="/static/js/jquery-1.8.1.js"></script>
+<script type="text/javascript" src="/static/js/finiteh.js"></script> 
+
+<!-- <link href="/static/css/reset.css" rel="stylesheet" type="text/css" /> 
+<link href="/static/css/styles.css" rel="stylesheet" type="text/css" />  -->
+
+<link href="{{STATIC_URL}}css/reset.css" type="text/css" rel="stylesheet"> 
+<link href="{{STATIC_URL}}css/styles.css" type="text/css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <header>          
+    <a href="/simulations/">Home</a>
+    <a href="/simulations/">Simulations</a>
+
+  </header>
+    <div id="container" >
+        <div id='description'>
+
+        	<h1>Libby Mutation</h1>
+
+		  	 <p class="lead">This simulation demonstrates how genetic drift in finite populations decreases heterozygosity over time. <br />In this sense, genetic drift and consanguineous mating have the same impact on heterozygosity.
+
+			 <p>In a finite population, expected heterozygosity decreases according to <span class="notation">H<sub>t</sub> = H<sub>0</sub>(1-<sup>1</sup>&frasl;<sub>2N<sub>e</sub></sub>)<sup>t</sup></span> where <span class="notation">H<sub>t</sub></span> is heterozygosity at time <span class="notation">t</span>, <span class="notation">H<sub>0</sub></span> is the initial heterozygosity at time zero, <span class="notation">t</span> is the number of generations and Ne is the effective population size. The generation-by-generation values computed from this equation are shown as a black line on the graph.</p>
+
+			 <p>There are additional lines on the graph (the number of lines is equal to the value in the text entry box &ldquo;Number of replicate populations to plot&rdquo;). These lines each show the heterozygosity over time in a single finite population that has an effective population size equal to the value in the text entry field. Notice that the heterozygosity frequencies in the individual populations varies over time and is often greater or less than the expected heterozygosity. This reinforces that the equation for expected heterozygosity applies to the average of a very large number of replicate populations (it is an ensemble distribution). Individual populations do experience a reduction in heterozygosity over time caused by genetic drift, but the decline in heterozygosity is a random walk. </p>
+  		</div>
+
+
+        <div id="plot" >
+		   <img name="plot" src="/simulations/finiteh/plot.png" alt="Finite H Plot" >
+  		</div>
+      
+
+		<form id="leftcontrols" name="finitehsimulation" method="get" action="/simulations/finiteh/run">
+
+			<h2>Controls</h2>
+  			<p class="instructions">Enter the parameters below and press Run to generate a graph of heterozygosity (H) over time in generations.</p>
+
+		  <input type="hidden" id='replicate_population_value' value="6">
+		  <input type="hidden" id='allele_frequency' value="5">
+  <div id="controls_div">
+      <fieldset  >
+           <div id="fs_controls_div">
+              <label>Effective Population Size (Ne)
+              	<div class="text_pos">
+                	<input name="populationSize" id="populationSize" type="text" value="50">
+                </div>
+        	  </label>
+              
+              <label>Number of Generations
+                 <div class="text_pos3">
+                     <input name="numberOfGenerations" id="numberOfGenerations" type="text" value="100" >
+                 </div>
+              </label>
+              <label>Initial Allele Frequency p(A)
+        		<div align="center">
+                    <label for="alleleFrequency">0</label>
+    <input name="alleleFrequency" id="alleleFrequency" type="range" step="1"  min="0" max="10" value="5">
+                    	<label for="alleleFrequency">1</label><br/>
+                     	<label class="midvalue" id='alleleFrequencyValue'></label>
+                </div>
+              </label><br/>
+              <label>Number of Replicate Populations to plot
+                 <div class="text_pos4" align="center">
+               		<label for="replicatePopulations">0</label><input name="replicatePopulations" id="replicatePopulations" type="range" value="6" min="0" max="20" step="1">
+                    <label for="replicatePopulations">20</label><br/>
+                    <label id='replicatePopulationsValue'></label>
+          		 </div>
+              </label><br/>  
+           </div>
+       </fieldset>
+      <input type="submit" name="run" id="runbutton" value="Run">
+      <input type="submit" name="clear" id="runbutton" value="Clear">
+      <br/>
+  </div>
+      
+        </form>
+        </div>
+
+      
+   </div>
+</body>
+</html>

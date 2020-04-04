@@ -1,0 +1,117 @@
+
+{% extends "base_topcontrols.html" %}
+{% block javascript %}
+<script type="text/javascript" src="{{STATIC_URL}}js/simulationFunctions.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/neutral_theory.js"></script> 
+{% endblock %}
+
+{# page title details #}
+{% block title %}Neutral Theory{% endblock %}
+
+{# simulation explaination #}
+{% block simulation_description %} 
+<div id="description">
+<h1> Neutral Theory </h1>    
+<p class="lead">This simulation is designed to illustrate the differences between the neutral theory and the nearly neutral theory of molecular evolution. Neutral theory considers the fate of new mutations acted only exclusively by genetic drift. In contrast, nearly neutral theory focuses on new mutations that are acted on by the combination of relatively weak natural selection (because mutations have relative fitness values close to the population average) and genetic drift. This simulation is designed to show the distribution of the times to fixation as well as the distribution of the times to loss for both neutral and nearly neutral models. For nearly neutral mutations, the simulation also shows the distribution of selection coefficients for those mutations that reach fixation as well as for those mutations that are lost. 
+</p>
+
+{% endblock %}
+</div>
+{# form details #}
+{# form tag attributes #}
+{% block simulation_name %} neutral_thoery_simulation{% endblock %}
+{% block action_url %}neutraltheory{% endblock %}
+
+{# form body #}
+{% block input_panel %} 
+<input type="hidden" id='focusOnPlot' value="{{focusOnPlot}}">
+<div id="topcontrols">
+          <h3>Parameters</h3>
+
+      <fieldset id="firstcontrol" >
+        <table>
+	<tr>
+		<td ><strong>
+	<label for="numberOfLoci">Total nuber of loci </label></strong>
+    </td><td >
+		<input name="numberOfLoci" type="text" value="{{number_of_mutations}}" /></td>
+	</tr>
+   <tr><td><strong> <label> Effective population size (Ne)</label></strong></td>
+    	<td><input name="populationSize" type="text" value="{{effective_population}}"/>
+     </td></tr>
+     <tr></tr>
+          </table>
+   </fieldset>
+     
+         <fieldset id="secondcontrol" >
+          <table>
+
+    <tr>
+    <td colspan="2">
+    <legend> Parameters for plots of allele frequency by time for individual mutations:</legend>
+    </td>
+    </tr>
+     <tr>
+    <td>
+
+
+     <strong><label for="gensBetweenMuts">Generations between mutations:</label></strong></td>
+     	<td><input name="gensBetweenMuts" type= "text"  value="{{generations_between_mutations}}"/></td>
+       </tr>
+       <tr><td><strong>
+        <label> Generations to view in graph </label></strong></td>
+        <td>
+        	<input name="gensToView" type="text" value="{{generations_to_view}}"/></td></tr>
+
+           </table>
+   </fieldset>
+     
+         <fieldset id="thirdcontrol" >
+          <table>
+          
+            <tr ><td colspan="2"> <legend> The relative fitness of new mutations is drawn from a uniform distribution.
+        </legend>
+            </td>
+       </tr>
+    
+     	<tr>
+        <td ><strong >
+     <label>Range of fitness values for mutations (when homozygous):</label></strong></td></tr><tr><td colspan="2" align="center"><label>0.1</label>
+     	<input name="relativeFitness" id="relfit" type= "range" max="200" min="1" step="1"/><label>20</label><br/>
+       <label> ±</label> <label id="fit_value"> {{relative_fitness}}</label><label> % of wAA = 1.0</label>
+        </td></tr>
+    </table>
+  </fieldset>
+    <input type="submit" name="run" id="runbutton" value="Run" >
+  <input type="submit" name="clear" id="runbutton" value="Clear">
+</div>
+      <div class="clear"></div>
+
+
+{% endblock %}
+
+{# plot image tag detail, attributes of image tag #}
+{% block simulation %}neutraltheory{% endblock %}
+{% block image_width %}1020{% endblock %}
+{% block image_height %}800{% endblock %}
+{% block plot_name %} Neutral Theory Plot{% endblock %}
+
+{% block extended_description %}
+<div id="description">
+<p>This simulation is designed to illustrate the eventual fate and segregation times of new mutations, two key concepts in the neutral and nearly neutral theories of molecular evolution.</p>
+
+<p>The simulation introduces new mutations into a finite population and then tracks the frequency of these new mutations over time until they are either lost from the population (go to a frequency of zero) or fixed in the population (go to a frequency of one). Each new mutation can be considered to occur at a different locus. The pattern to observe is how many mutations are fixed and how many are lost and how long mutations take to reach their eventual fate of fixation or loss. All of the new mutations are initially present as one copy or have an initial frequency of <strong>1/(2N<sub>e</sub>)</strong>. The allele frequencies are simulated for <strong>5N<sub>e</sub></strong> generations. </p>
+
+<p>The user-entered parameter "Total number of loci" sets the number of replicate loci in both the neutral and nearly neutral simulations. The user can also set the effective population size <strong>(N<sub>e</sub>)</strong>, which is regulates the strength of genetic drift.</p>
+
+<p>The allele frequency by time plots show the pattern of change in allele frequency over time for a random sample of replicate loci. The user can change the "Generations between mutations infrequency by time plots" to alter the view of these allele frequencies (the underlying allele frequency data are not changed). This spreads the allele frequency trajectories out so they can be seen more easily. Fewer generations between mutations will result in more allele frequency trajectories being displayed. The total number of generations in these plots to view can also be set by the user.</p>
+
+<p>In the nearly neutral simulation, the user can set the boundaries of the relative fitness distribution for new mutations as a percent of the mean fitness in the population. For example, if the "Range of fitness values for mutations" is set at ± 5%, a genotype homozygous for a new mutation would have a randomly assigned relative fitness between <strong>0.95 and 1.05</strong> using a <strong>uniform distribution</strong>. (Note that a uniform distribution is probably not biologically accurate, so do not focus on the exact shape of the fitness distributions for mutations.) The simulation assumes that gene action is strictly additive, meaning that heterozygotes for a new mutation have a relative midway between the relative fitness of a genotype homozygous for a new mutation and one. </p> 
+
+<p>For both the neutral and nearly neutral models, the histograms show the distribution of times to fixation for those mutations that eventually fix as well as the distribution of times to loss for those mutations that eventually go to loss. (Those few mutations that remain segregating are ignored.)</p>
+
+<p>In addition for the nearly neutral model, histograms show the distribution of relative fitness values for those mutations that eventually fix as well as for those mutations that eventually go to loss.<p>
+
+<p><em>For more background, see chapters 5 and 8 in Hamilton, 2009.</em></p>
+</div>
+{% endblock %}

@@ -1,0 +1,82 @@
+@charset "UTF-8";
+/* CSS Document */
+#appDiv1 {
+	position:absolute;
+	left:318px;
+	top:10px;
+	width:584px;
+	height:455px;
+	z-index:1;
+}
+#appDiv2 {
+	position:absolute;
+	left:55px;
+	right:55px;
+	top:12px;
+	width:1392px;
+	height:1062px;
+	z-index:2;
+}
+#appDiv4 {
+	position:absolute;
+	left:3px;
+	top:94px;
+	width:267px;
+	height:456px;
+	z-index:4;
+}
+
+#appDiv3 {
+	alignment-adjust:central;
+	position:absolute;
+	left: 28px;
+	top:617px;
+	width:1171px;
+	height:317px;
+	z-index:3;
+}
+#imgdiv {
+	alignment-adjust:left;
+	position:absolute;
+	left: 140:px;
+	top:8px;
+	width:120px;
+	height:299px;
+	z-index:5;
+	left: 3px;
+}	
+#desdiv {
+	alignment-adjust:left;
+	position:absolute;
+	left: 219px;
+	top:9px;
+	width:949px;
+	height:296px;
+	z-index:6;
+}	
+
+#header {
+	position:absolute;
+	top:15px;
+	z-index:7;
+	width: 1391px;
+}
+#footer {
+	position:absolute;
+	left:14px;
+	top:966px;
+	width:1392px;
+	height:74px;
+	z-index:8;
+}
+
+.style11 {font-weight: bold}
+.style12 {font-size: 18px}
+#apDiv2 div h2 {
+	color: #003E7E;
+	position: absolute;
+	top: 6px;
+	left: 175px;
+	width: 1107px;
+	height: 42px;
+}

@@ -1,0 +1,123 @@
+@charset "UTF-8";
+/* CSS Document */
+#appDiv1 {
+	position:absolute;
+	left:450px;
+	top:20px;
+	width:584px;
+	height:455px;
+	z-index:1;
+}
+#appDiv2 {
+	position:absolute;
+	left:55px;
+	right:55px;
+	top:12px;
+	width:1556px;
+	height:1269px;
+	z-index:2;
+}
+#appDiv3 {
+	alignment-adjust:central;
+	position:absolute;
+	left: 297px;
+	top:734px;
+	width:1055px;
+	height:366px;
+	z-index:3;
+}
+#imgdiv {
+	alignment-adjust:left;
+	position:absolute;
+	left: 140:px;
+	top:8px;
+	width:120px;
+	height:301px;
+	z-index:5;
+	left: 7px;
+}	
+#desdiv {
+	alignment-adjust:left;
+	position:absolute;
+	left: 228px;
+	top:7px;
+	width:824px;
+	height:348px;
+	z-index:6;
+}	
+#footer {
+	position:absolute;
+	left:10px;
+	top:1128px;
+	width:1537px;
+	height:100px;
+	alignment-adjust: central;
+	z-index:4;
+}
+.sliderlabel {
+	position: relative;
+	width: 200px;
+	left: 0px;
+}
+.style11 {font-weight: bold}
+.style12 {font-size: 18px}
+#controls_div {
+	position: absolute;
+	visibility: visible;
+	z-index: auto;
+	height: 269px;
+	width: 392px;
+	left: 10px;
+	top: 127px;
+}
+
+#fs_controls_div {
+	position: absolute;
+	left: 12px;
+	top: 17px;
+	width: 381px;
+	height: 216px;
+}
+
+.text_pos {
+	left: 200px;
+	top: 18px;
+	position: absolute;
+}
+.text_pos2 {
+	left: 190px;
+	top: 89px;
+	position: absolute;
+}
+.text_pos3 {
+	left: 200px;
+	top: 54px;
+	position: absolute;
+}
+.text_pos4 {
+	left: 88px;
+	top: 174px;
+	position: absolute;
+}
+#runbutton {
+	font-size: 14px;
+	font-style: oblique;
+	line-height: normal;
+	font-weight: bold;
+	font-variant: small-caps;
+	color: #039;
+}
+
+.fraction {
+	display: inline-block;
+	position: relative;
+	vertical-align: middle; 
+	letter-spacing: 0.01em;
+	text-align: center;
+	}
+.fraction > span { 
+	display: block; 
+	padding: 0.2em; 
+	}
+.fraction span.fdn {border-top: thin solid black;}
+.fraction span.bar {display: none;}

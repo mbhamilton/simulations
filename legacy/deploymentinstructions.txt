@@ -1,0 +1,24 @@
+EPD
+install epd and django if necessary
+
+configure settings file:
+1. set database file location (we are not dealing with any database so this is not necessary) 
+2. Ensure static_url is set to'/static/' - this is a directory that will hold all js, css, image files
+3. Add the template_context_processors
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    'django.core.context_processors.request',
+    )
+4. Set Template_dirs to the director where the html/template files etc are kept
+5. Ensure root_urlconf point to the package holding the urls.py file
+6. Add any package you have created to the installed_apps 
+
+Manage.py
+1. ensure that the DJANGO_SETTINGS_MODULE is set, i.e. 
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "populationgenetics.settings") .

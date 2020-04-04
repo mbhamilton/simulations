@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block javascript %} 
+<script type="text/javascript" src="{{STATIC_URL}}js/simulations.js"></script> 
+<script type="text/javascript" src="{{STATIC_URL}}js/simulationFunctions.js"></script> 
+{% endblock %}
+
+{# page title details #}
+{% block title %}de Finetti Simulation{% endblock %}
+
+{# plot image tag details, attributes of image tag #}
+{% block simulation %}definetti{% endblock %}
+{% block image_width %}750{% endblock %}
+{% block image_height %}550{% endblock %}
+{% block plot_name %}Definetti Plot{% endblock %}
+
+{# form details, for user input #}
+{# form tag attributes #}
+{% block simulation_name %}definettisimulation{% endblock %}
+{% block action_url %}definetti{% endblock %}
+
+{# form body #}
+{% block input_panel %}
+  <input type="hidden" id='selectedModel' value="{{matingModel}}">
+  <input type="hidden" id='selectedgenerations' value="{{generations}}">
+  <input type="hidden" id='focusOnPlot' value="{{focusOnPlot}}">
+  <div id="leftcontrols">
+  <fieldset>
+     <h3>Mating Model</h3>
+     <p>Enter values for the frequencies of AA, Aa, and aa genotypes in the boxes to the left of the window.</p>
+    <table >
+      <tr>
+        <td><strong>
+          <label>
+            <input type="radio" name="MatingModel" value="0" id="MatingModel_0">
+            Radom Mating</label>
+        </strong></td>
+      </tr>
+      <tr>
+        <td><strong>
+          <label>
+            <input type="radio" name="MatingModel" value="1" id="MatingModel_1">
+            Positive Assortative</label>
+        </strong></td>
+      </tr>
+      <tr>
+        <td><strong>
+          <label>
+            <input type="radio" name="MatingModel" value="2" id="MatingModel_2">
+            Negative Assortative</label>
+        </strong></td>
+      </tr>
+    </table>
+  </fieldset>
+  <br/>
+     
+      <fieldset  >
+        <legend>Frequency of</legend>
+        <table >
+       <tr  >
+       <td><label style="margin-right: 10px;">AA: </label></td>
+       <td >
+       	<label for="AA">0</label>
+       	<input type="range" name="AA" id="AA" max="100" min="0" step="1" value="{{AAwhole}}">
+        <label for="pAA">1</label><br/>
+        <label id='fAA' class="midvalue">{{fAA}}</label>
+       </td>
+        </tr>
+        <tr>
+        <td><label>Aa: </label></td><td ><label for="Aa">0</label>
+       <input type="range" name="Aa" id="Aa" max="100" min="0" step="1" value="{{Aawhole}}">
+       <label for="wAa">1</label><br/>
+        <label id='fAa' class="midvalue">{{fAa}}</label>
+        </td>
+        </tr>
+        <tr  >
+        <td ><label>aa: </label></td>
+        <td >
+        	<label id='aa' >{{frequencysum}}</label>
+        </td>
+        </tr>
+        </table>
+      </fieldset>
+      <br/>
+      <fieldset><legend>Generations to simulate</legend>
+      <select name="generationsToSimulate">
+          {% for x in generationsList%}
+          <option value="{{x}}"> {{x}}</option>
+          {% endfor %}
+      </select>
+     
+      </fieldset><br/>
+       <input id="showAxis" name="showAxis" type="checkbox" {{axis}}><label>Show genotype frequency axis lines</label></input>
+       <br/><br/>
+       <input name="run" type="submit" value="Ok"> &nbsp; <input name="clear" type="submit" value="Clear Canvas">
+     </div>
+      
+      {% endblock %}
+      
+      {% block simulation_description %}
+      <div class="clear"></div>
+<div id="description">
+      <h1> Genotype and allele frequencies on a De Finetti diagram </h1>
+      <p class="lead">This module illustrates a tri-axis plot of the frequencies of the <strong>AA</strong>, <strong>A</strong>, and <strong>aa</strong> genotypes at a diallelic locus when Hardy-Weinberg genotype frequencies are met for all possible frequencies of the <strong>A</strong> and <strong>a</strong> alleles. </p>
+       <p>The horizontal axis gives the frequency of the A allele. The three dashed lines perpendicular to each of the sides of the triangle represent the frequencies of the <strong>aa</strong>, <strong>Aa</strong>, and <strong>AA</strong> genotypes. The distance from where the dashed line is perpendicular to a side of the triangle gives the frequency of a given genotype.</p> 
+
+<p>Hardy-Weinberg expected genotype frequencies are represented by the blue parabola.</p>
+
+<p>The module lets users generate a point on the graph to see how one set of genotype frequencies compares to the Hardy-Weinberg expected genotype frequencies at the same allele frequencies.</p>
+
+<p>Use the sliders to set the frequencies of AA and Aa genotypes (the frequency of aa genotypes is determined by subtraction).</p> 
+
+<p>Press OK to display the entered genotype frequencies on the graph. Look for a small red dot on the graph. The horizontal position of the point will depend on the allelic frequencies, while the position of the point inside the triangle depends on the genotype frequencies. If the point falls on the parabola, then the genotype frequencies match Hardy-Weinberg expected genotype frequencies.<br/> 
+Mating models:
+Random mating means that mating pairs of genotypes are expected to occur at a frequency equal to the product of their genotype frequencies. For example, if the AA genotype has a frequency of 0.25 and the Aa genotype has a frequency of 0.5, then the expected frequency of a AA x Aa mating is 0.25 x 0.5 = 0.125.</p> 
+
+<p>Positive assortative mating means that only like genotypes mate, such as AA with AA. </p>
+
+<p>Positive without dominance simulates positive assortative mating (like phenotypes mate exclusively, such as AA with AA) where the phenotypic values of all three genotypes are distinct.</p> 
+
+<p>Negative assortative mating (also called disassortative mating) permits matings among unlike genotypes only. The permitted mating are AA x aa, Aa x aa, aa x AA and aa x Aa.  This model of negative assortative mating illustrates that certain forms of non-random mating can actually change allele frequencies in a population, in contrast to positive assortative mating, which only alters genotype frequencies.  </p>
+
+<p>To see how the negative assortative mating works, let d = f(AA), h = f(Aa) and r = f(aa). The recursion equations for negative assortative mating are then d<sub>t+1</sub> = 0, h<sub>t+1</sub> = (d+0.5<em>h</em>)/(<em>d</em>+<em>h</em>)  and r<sub>t+1</sub> = 0.5<em>h</em>/(<em>d</em>+<em>h</em>)  (see Workman PL. 1968. <em>The maintenance of heterozygosity by partial negative assortative mating.</em> Genetics 50:1369-1382.). These recursions can be derived by tabulating the permitted matings and then summing the relative frequencies of the progeny of each permitted mating. </p>
+
+<p>For more background, see <em>chapter 2</em> in Hamilton, 2009.</p>
+</div>
+{% endblock %}

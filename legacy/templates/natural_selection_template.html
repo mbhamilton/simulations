@@ -1,0 +1,127 @@
+{% extends "base_topcontrols.html" %}
+
+{% block javascript %} 
+<script type="text/javascript" src="{{STATIC_URL}}js/simulationFunctions.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/natural_selection.js"></script> 
+{% endblock %}
+
+{# page title details #}
+{% block title %}Natural Selection{% endblock %}
+
+{# plot image tag details, attributes of image tag #}
+{% block simulation %}naturalselection{% endblock %}
+{% block image_width %}1000{% endblock %}
+{% block image_height %}600{% endblock %}
+{% block plot_name %}Natural Selection Plot{% endblock %}
+
+{# form details, for user input #}
+{# form tag attributs #}
+{% block simulation_name %}natural_selection_simulation{% endblock %}
+{% block action_url %}naturalselection{% endblock %}
+
+{# form body #}
+{% block input_panel %}
+<input type="hidden" id='focusOnPlot' value="{{focusOnPlot}}">
+<div id="topcontrols" >
+ <div class="controlDiv1">  
+      <fieldset id="firstcontrol" >
+        <legend>Initial genotype frequencies</legend>
+        <table >
+       <tr  >
+       <td >p(AA):</td>
+       <td >
+       	<label for="AA">0</label>
+       	<input type="range" name="pAA" id="AA" max="100" min="0" step="1">
+        <label for="AA">1</label><br/>
+        <label id='pAA' class="midvalue">{{pAA}}</label>
+       </td>
+        </tr>
+        <tr  >
+        <td >p(Aa):</td>
+        <td >
+        <label for="Aa">0</label>
+       <input type="range" name="pAa" id="Aa" max="100" min="0" step="1">
+       <label for="Aa">1</label><br/>
+        <label id='pAa' class="midvalue">{{pAa}}</label>
+        </td>
+        </tr>
+        <tr  >
+        <td >p(aa):</td>
+        <td >
+        	<label id='paa' >{{paa}}</label>
+        </td>
+        </tr>
+        </table>
+      </fieldset>
+     </div>
+     <div class="controlDiv2">  
+      <fieldset  id="secondcontrol">
+        <legend>Relative fitness values (w)</legend>
+        <table >
+       <tr  >
+       <td >wAA:</td>
+       <td >
+       	<label for="wAA">0</label>
+       	<input type="range" name="wAA" id="wAA" max="200" min="0" step="1">
+        <label for="wAA">20</label><br/>
+        <label id='wAA_value' class="midvalue">{{wAA}}</label>
+       </td>
+        </tr>
+        <tr  >
+        <td >wAa:</td>
+        <td >
+        <label for="wAa">0</label>
+       <input type="range" name="wAa" id="wAa" max="200" min="0" step="1" value="{{wAawhole}}">
+       <label for="wAa">20</label><br/>
+        <label id='wAa_value' class="midvalue">{{wAa}}</label>
+        </td>
+        </tr>
+        <tr  >
+        <td >waa:</td>
+        <td >
+        	<label for="waa">0</label>
+       		<input type="range" name="waa" id="waa" max="200" min="0" step="1" value="{{waawhole}}">
+           	<label for="waa">20</label><br/>
+        	<label id='waa_value' class="midvalue">{{waa}}</label>
+        </td>
+        </tr>
+        </table>
+      </fieldset>
+     </div>
+      <div class="controlDiv3"  >  
+        <table >
+       <tr>
+       <td >Generations to simulate</td>
+       <td  >
+       	<input type="text" name="gens" id="gens" value="{{gens}}" maxlength="4" size="10">
+       </td>
+        </tr>
+        </table>
+      </div>
+      <div class="controlDiv4" >
+      <input id="run" type="submit" value="Ok"> &nbsp; <input name="clear" type="submit" value="Clear Canvas">
+      </div>
+    </div>
+      <div class="clear"></div>
+      {% endblock %}
+      
+      {% block simulation_description %}
+      <div id="description">
+        <h1> Natural Selection on a Diallelic Locus </h1>
+        <p class="lead">This module simulates the deterministic process of natural selection acting on the three genotypes present at a one locus with two alleles.  The module displays the results of natural selection on four plots: genotype frequency over time, frequency of the A allele over time, population mean fitness (w-bar) over allele frequency, and change in the frequency of the A allele (&Delta;p) over allele frequency.</p>
+ 
+<p> User-entered parameters are the initial genotype frequencies “P(AA)” and “P(Aa)” (P(aa) is determined by subtraction since the genotype frequencies sum to one), the relative fitness values of each genotype, and the number of generations to simulate. </p>
+
+<p>Using the relative fitness values, the user can set the model to directional selection, balancing selection, or disruptive selection. For example, relative fitness values of w1 = 1, w2 = 1.5 and w3 = 1 correspond to an over-dominance model of relative fitness that produces balancing selection.</p>
+
+<p>The genotype frequency over time plot shows how selection acts on genotypes based on their relative fitness values. This genetic change is frequently summarized by plotting frequencies of the A allele over time, even though alleles do not have fitnesses (in most cases) and selection does not act directly on alleles.</p>
+
+<p>The plot of population mean fitness (w-bar) over allele frequency shows where mean fitness is highest. This explains why natural selection attains a given set of equilibrium genotype frequency values.</p> 
+
+<p>The plot of change in the frequency of the A allele (&Delta;p) over allele frequency shows how rapidly allele frequency changes and whether allele frequency is increasing or decreasing. &Delta;p values of zero identify equilibrium allele frequency points since allele frequencies are not changing at those population allele frequency points. </p>
+
+<p>For more background, see <em>chapter 6</em> in Hamilton, 2009.</p>
+
+</div>
+
+  {% endblock %}

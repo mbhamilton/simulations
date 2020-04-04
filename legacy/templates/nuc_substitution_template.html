@@ -1,0 +1,183 @@
+{% extends "base_topcontrols.html" %}
+
+{% block javascript %} 
+<script type="text/javascript" src="{{STATIC_URL}}js/simulationFunctions.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/nucsubstitution.js"></script> 
+{% endblock %}
+
+{# page title details #}
+{% block title %}Nuc Substitution{% endblock %}
+
+{# plot image tag details, attributes of image tag #}
+{% block simulation %}nucsubstitution{% endblock %}
+{% block image_width %}1000{% endblock %}
+{% block image_height %}800{% endblock %}
+{% block plot_name %}Nuc Substitution Plot{% endblock %}
+
+{# form details, for user input #}
+{# form tag attributs #}
+{% block simulation_name %}nucsubstitutionsimulation{% endblock %}
+{% block action_url %}nucsubstitution{% endblock %}
+
+{# form body #}
+{% block input_panel %}
+<input type="hidden" id='selectedModel' value="{{exampleModel}}">
+<input type="hidden" id='focusOnPlot' value="{{focusOnPlot}}">
+<div id="topcontrols" class="nucsubcontrol" >
+<h3>Divergence between two DNA sequences</h3>
+<p>Apparrent divergence (p-distance) and divergence estimateed with nucleotide substitution models</p>
+ 
+  <fieldset id="firstcontrol" >
+    <legend>Equillibrim nucleotide frequencies</legend>
+    <table >
+       <tr> 
+            <td ><label>A:</label></td>
+            <td class="input"><input id="A" name="A" type="text" value="{{a}}" size="5" maxlength="5">
+            </td>
+       </tr>
+        <tr>
+            <td ><label>
+            T:</label></td>
+            <td ><input type="text" value="{{t}}" name="T" id="T" maxlength="5" size="5"></td>
+        </tr>
+        <tr>
+            <td ><label>C:</label></td>
+            <td ><input id="C" name="C" type="text"  value="{{c}}" size="5" maxlength="5"  ></td>
+        </tr>
+        <tr>
+        	<td ><label>G:</label></td>
+        	<td><label id="G">{{g}}</label> </td>
+        </tr>
+        <tr>
+        	<td colspan="2"><label>Length of DNA sequence (bp):</label><br>
+        	<label>100</label>
+        	<input type="range" name="dna" id="dna" value="{{bp}}" min="100" max="5000" step="100"/>
+        	<label>5000</label><br>
+        	<label id="dnaValue" class="midvalue">{{bp}}</label>
+        	</td>
+         </tr>
+         <tr>
+            <td colspan="2"><label>Generations to simulate:</label><br>
+            	<label>100</label>
+            		<input  type="range" id="generations" name="generations" value="{{gens}}" min="100" max="5000" step="100" />
+            	<label>5000</label><br/>
+            	<label id="genValue" class="midvalue">{{gens}}</label>
+            </td>
+         </tr>
+       </table>
+    </fieldset> 
+        
+      <fieldset id="nucwidthcontrol">
+        <legend>Rates of state changes between nucleotides</legend>
+        <table width="380" style="font-size:.8em">
+        <tr >
+             <td width="90" >
+            <fieldset id="nucfirstcontrol">
+                <legend>Transitions (purines)</legend>
+                <table style="font-size:.7em">
+                <tr><td>r(A &rarr; G)</tr>
+                <tr><td  align="right"><input type="text" id="ag" name="ag" value="{{ag}}"  size="6" maxlength="6" /></td></tr>
+                <tr><td>r(G &rarr; A)</td></tr>
+                </table>
+            </fieldset>
+            </td>
+            <td width="90">
+            <fieldset id="nucsecondcontrol">
+                <legend>Transitions (pyrimidines)</legend>
+                <table style="font-size:.7em">
+                <tr><td>r(C &rarr; T)</tr>
+                <tr><td  align="right"><input type="text" id="ct" name="ct" value="{{ct}}"  size="6" maxlength="6"/></td></tr>
+                <tr><td>r(T &rarr; C)</td></tr>
+                </table>
+            </fieldset>
+            </td>
+            <td width="200" align="center">
+            <fieldset id="lastcontrol" >
+                <legend>Transversions</legend>
+                <table style="font-size:.7em">
+                    <tr>
+                        <td>r(A &rarr; C)</td>
+                        <td><input type="text" value="{{ac}}"  id="ac" name="ac" size="6" maxlength="6"/></td>
+                        <td>r(C &rarr; A)</td>
+                    </tr>
+                    <tr>
+                        <td>r(A &rarr; T)</td>
+                        <td><input type="text" value="{{at}}"  id="at" name="at" size="6" maxlength="6"/></td>
+                        <td>r(T &rarr; A)</td>
+                    </tr>
+                    <tr>
+                        <td>r(G &rarr; C)</td>
+                        <td><input type="text" value="{{gc}}" id="gc" name="gc" size="6" maxlength="6"/></td>
+                        <td>r(C &rarr; G)</td>
+                    </tr>
+                    <tr>
+                        <td>r(G &rarr; T)</td>
+                        <td><input type="text" value="{{gt}}"  id="gt" name="gt"size="6" maxlength="6"/></td>
+                        <td>r(T &rarr; G)</td>
+                   </tr>
+              </table>
+            </fieldset>
+            </td>
+       </tr>
+        </table>
+      </fieldset>
+
+      <fieldset id="thirdcontrol" ><legend>Example model parameters</legend>
+      <table >
+      <tr>
+        <td><strong>
+          <label><input type="radio" name="exampleModel" value="jc69" id="jc69"/>JC69</label>
+        </strong></td>
+      </tr>
+      <tr>
+        <td><strong>
+          <label>
+            <input type="radio" name="exampleModel" id="k80" value="k80">K80</label>
+        </strong></td>
+      </tr>
+      <tr>
+        <td><strong>
+          <label>
+            <input type="radio" name="exampleModel" id="t92" value="t92" >T92</label>
+        </strong></td>
+      </tr>
+      <tr>
+        <td><strong>
+          <label>
+            <input type="radio" name="exampleModel" id="tn93" value="tn93" >TN93</label>
+        </strong>
+  <br />
+
+  <input name="run" type="submit" value="Run"> &nbsp; 
+  <input name="clear" type="submit" value="Clear Canvas">
+      </td>
+      </tr>
+    </table>
+      </fieldset>
+       <div class="controlDiv4" >
+     
+    </div>
+
+  </div> <!-- /#driftselection -->
+          <div class="clear"></div>
+
+      {% endblock %}
+      
+      {% block simulation_description %}
+      <div id="description">
+      <h1> Nucleotide Substitution </h1>
+      <p class="lead">This simulation illustrates the true and estimated divergence between two DNA sequences based on an explicit model of mutational change.</p>
+      
+<p>The input parameters are the two transition rates and the four possible transversion rates along with equilibrium nucleotide frequencies. These are the parameters that make up a nucleotide substitution model.
+The Example model parameters radio buttons set all of the model parameters at once to correspond to one of the commonly used nucleotide substitution models. For example, The JC69 button will set all four base frequencies to be equal and all six of the base change rates to be equal as assumed under that model.</p>
+
+<p>The Jukes-Cantor of JC69 model assumes all types of substitutions occur at one rate, and that equilibrium base frequencies are all 25%. The Kimura 1980 or K80 model (also called the Kimura two parameter of K2P model) assumes that transitions and transversions occur at different rates, and that equilibrium base frequencies are all 25%. The Tamura 92 model is a special case of the K2P model, assuming different rates of transition and transversion but with equilibrium base frequencies that are unequal. The Tamura-Nei model assumes that two types of transitions occur at different rates, that all transversions have one rates, and that equilibrium base frequencies are unequal.</p>
+
+<p>After setting the model parameters, press Run and view the graph. The x-axis is time while the y-axis is divergence (portion of sites diverged). One line in the plot shows apparent divergence or p-distance between two sequences. Compare this with the line showing the actual amount of divergence based on the total number of sites that have experienced substitutions in the two sequences. There are four nucleotide substitution model-corrected estimates of divergence: JC69, K80 or K2P, Tamura 92, and Tamura Nei 93. (Line styles in the plot vary by how the simulation is implemented - see the plot legend.)</p>
+
+<p>Under all nucleotide substitution models, as time increases apparent divergence shows an asymptote and levels off. The true divergence continues to increase linearly. (It is possible for the true divergence to exceed 1.0 or 100% since it is based on the number of sites that experience a substitution and each site can experience more than one substitution.) Divergence shows saturation because substitutions occur at sites that have already experienced a substitution - so-called "multiple hits."
+The correction provided by a given distance metric in the graph is more or less accurate depending on the underlying nucleotide substitution model. The model-corrected divergence estimates all provide some degree of improvement over the p-distance, bringing the estimate of divergence closer to the actual amount of divergence. How effective a nucleotide substitution model is at correcting the apparent divergence depends the pattern of substitution in the evolving sequences. When the sequences evolve with a simple pattern (e.g. one rate of change and all equilibrium base frequencies equal 0.25) then JC69 does a decent job as a divergence correction. However, when the sequences evolve with a more complex pattern then the nucleotide substitution models with more parameters often do a better job as a divergence correction. Note that nucleotide substitution models with more parameters are not necessarily better divergence corrections.</p>
+
+<p>For more background, see <em>chapter 8</em> in Hamilton, 2009.</p>
+</div>
+{% endblock %}
